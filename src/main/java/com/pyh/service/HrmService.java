@@ -1,5 +1,5 @@
 package com.pyh.service;
 
-public class HrmService {
+public interface HrmService {
 
 }

@@ -17,7 +17,7 @@
 	</context-param>
  
  	<servlet>
- 		<servlet-name>hrmapp</servlet-name>
+ 		<servlet-name>springmvc</servlet-name>
  		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
  		<init-param>
  			<param-name>contextConfigLocation</param-name>
@@ -28,7 +28,7 @@
  	</servlet>
  	
  	<servlet-mapping>
- 		<servlet-name>hrmapp</servlet-name>
+ 		<servlet-name>springmvc</servlet-name>
  		<url-pattern>/</url-pattern>
  	</servlet-mapping>
  	
@@ -45,4 +45,13 @@
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<error-page>
+	    <error-code>404</error-code>
+	    <location>/404.html</location>
+	</error-page>
+  
+  <welcome-file-list>
+    <welcome-file>/index.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>

@@ -15,20 +15,25 @@ public class UserDynaSqlProvider {
 			{
 				UPDATE(USERTABLE);
 				if(user.getUsername()!=null)
-					SET("username="+user.getUsername());
+					SET(" username = #{username}");
 				if(user.getLoginname()!=null)
-					SET("loginname = "+user.getLoginname());
+					SET(" loginname = #{loginname}");
 				if(user.getPassword()!=null)
-					SET("password ="+user.getPassword());
+					SET(" password = #{password}");
 				if(user.getStatus()!=null)
-					SET("status = "+user.getStatus());
+					SET(" status = #{status}");
 				if(user.getCreateDate()!=null)
-					SET("createDate="+user.getCreateDate());
+					SET(" createDate = #{createDate}");
 				WHERE("ID=" +user.getId());
 			}
 		}.toString();
 	}
 	
+	/**
+	 * 动态分页查询 
+	 * @param params
+	 * @return
+	 */
 	public String selectWithParam(final Map<String,Object> params) {
 		String sql = new SQL() {
 			{
@@ -37,9 +42,9 @@ public class UserDynaSqlProvider {
 				if(params.get("user")!=null) {
 					User user = (User) params.get("user");
 					if(user.getUsername()!=null&&!"".equals(user.getUsername()))
-						WHERE("username="+user.getUsername());
-					if(user.getStatus()!=null&& !"".equals(user.getStatus()))
-						WHERE("status="+user.getStatus());
+						WHERE(" username like CONCAT('%',#{user.username},'%') ");
+					if(user.getStatus()!=null)
+						WHERE(" status like CONCAT('%',#{user.status},'%') ");
 				}
 			}
 		}.toString();
@@ -49,14 +54,44 @@ public class UserDynaSqlProvider {
 		return sql;
 	}
 	
-	public String count(Map<String,Object> params) {
-		return null;
-		
+	/**
+	 * 动态查询总数
+	 * @param params
+	 * @return
+	 */
+	public String count(final Map<String,Object> params) {
+		return new SQL() {
+			{
+				SELECT("count(*)");
+				FROM(USERTABLE);
+				if(params.get("user")!=null) {
+					User user = (User) params.get("user");
+					if(user.getUsername()!=null&&!"".equals(user.getUsername()))
+						WHERE(" username like CONCAT('%',#{user.username},'%') ");
+					if(user.getStatus()!=null)
+						WHERE(" status like CONCAT('%',#{user.status},'%') ");
+				}
+			}
+		}.toString();
 	}
 	
-	public String insertUser(User user) {
-		return null;
-		
+	public String insertUser(final User user) {
+		return new SQL() {
+			{
+				INSERT_INTO(USERTABLE);
+				if(user.getUsername()!=null&&"".equals(user.getUsername()))
+					SET(" username = #{username}");
+				if(user.getLoginname()!=null&&"".equals(user.getLoginname()))
+					SET(" loginname = #{loginname}");
+				if(user.getPassword()!=null&&"".equals(user.getPassword()))
+					SET(" password = #{password}");
+				if(user.getStatus()!=null)
+					SET(" status = #{status}");
+				if(user.getCreateDate()!=null)
+					SET(" createDate = #{createDate}");
+				WHERE("ID=" +user.getId());
+			}
+		}.toString();
 	}
 
 }
