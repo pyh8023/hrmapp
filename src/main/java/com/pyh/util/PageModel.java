@@ -53,7 +53,4 @@ public class PageModel {
 		return (this.getPageIndex()-1)*this.getPageSize() ;
 	}
 	
-	
-	
-	
 }

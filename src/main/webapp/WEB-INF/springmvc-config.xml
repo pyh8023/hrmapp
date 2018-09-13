@@ -19,14 +19,14 @@
     <mvc:default-servlet-handler/>
     
     <!-- 定义Spring MVC的拦截器 -->
-    <mvc:interceptors>
+   <!-- <mvc:interceptors>
     	<mvc:interceptor>
-    		<!-- 拦截所有请求 -->
+    		&lt;!&ndash; 拦截所有请求 &ndash;&gt;
     		<mvc:mapping path="/*"/>
-    		<!-- 自定义判断用户权限的拦截类 -->  
+    		&lt;!&ndash; 自定义判断用户权限的拦截类 &ndash;&gt;
     	 	<bean class="com.pyh.interceptor.AuthorizedInterceptor"/>
     	</mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
     
     <!-- 视图解析器  -->
      <bean id="viewResolver"

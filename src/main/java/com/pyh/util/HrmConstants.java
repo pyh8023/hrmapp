@@ -16,6 +16,6 @@ public class HrmConstants {
 	public static final String USER_SESSION = "user_session";
 	
 	// 默认每页4条数据
-	public static int PAGE_DEFAULT_SIZE = 4;
+	public static int PAGE_DEFAULT_SIZE = 10;
 	
 }
