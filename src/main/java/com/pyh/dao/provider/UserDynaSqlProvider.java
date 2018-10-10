@@ -44,7 +44,7 @@ public class UserDynaSqlProvider {
 					if(user.getUsername()!=null&&!"".equals(user.getUsername()))
 						WHERE(" username like CONCAT('%',#{user.username},'%') ");
 					if(user.getStatus()!=null)
-						WHERE(" status like CONCAT('%',#{user.status},'%') ");
+						WHERE(" status = #{user.status} ");
 				}
 			}
 		}.toString();
@@ -69,7 +69,7 @@ public class UserDynaSqlProvider {
 					if(user.getUsername()!=null&&!"".equals(user.getUsername()))
 						WHERE(" username like CONCAT('%',#{user.username},'%') ");
 					if(user.getStatus()!=null)
-						WHERE(" status like CONCAT('%',#{user.status},'%') ");
+						WHERE(" status = #{user.status} ");
 				}
 			}
 		}.toString();
@@ -79,17 +79,14 @@ public class UserDynaSqlProvider {
 		return new SQL() {
 			{
 				INSERT_INTO(USERTABLE);
-				if(user.getUsername()!=null&&"".equals(user.getUsername()))
-					SET(" username = #{username}");
-				if(user.getLoginname()!=null&&"".equals(user.getLoginname()))
-					SET(" loginname = #{loginname}");
-				if(user.getPassword()!=null&&"".equals(user.getPassword()))
-					SET(" password = #{password}");
+				if(user.getUsername()!=null&& !"".equals(user.getUsername()))
+					VALUES("username ","#{username}");
+				if(user.getLoginname()!=null&& !"".equals(user.getLoginname()))
+					VALUES("loginname","#{loginname}");
+				if(user.getPassword()!=null&& !"".equals(user.getPassword()))
+					VALUES("password","#{password}");
 				if(user.getStatus()!=null)
-					SET(" status = #{status}");
-				if(user.getCreateDate()!=null)
-					SET(" createDate = #{createDate}");
-				WHERE("ID=" +user.getId());
+					VALUES("status","#{status}");
 			}
 		}.toString();
 	}

@@ -7,7 +7,7 @@ public class PageModel {
 	/** 分页总数据条数  */
 	private int recordCount;
 	/** 当前页面 */
-	private int pageIndex ;
+	private int pageIndex;
 	/** 每页分多少条数据   */
 	private int pageSize = HrmConstants.PAGE_DEFAULT_SIZE;
 	
@@ -41,7 +41,7 @@ public class PageModel {
 	
 	public int getTotalSize() {
 		if(this.getRecordCount() <=0){
-			totalSize = 0 ;
+			totalSize = 1 ;
 		}else{
 			totalSize = (this.getRecordCount() -1)/this.getPageSize() + 1;
 		}

@@ -43,12 +43,14 @@ public class HrmServiceImpl implements HrmService{
 	@Autowired
 	private DocumentDao documentDao;
 
+	@Override
 	@Transactional(readOnly=true)
 	public User login(String loginname, String password) {
 		log.info("HrmServiceImpl "+ loginname +" login -- >>");
 		return userDao.selectByLoginNameAndPassword(loginname, password);
 	}
 
+	@Override
     @Transactional(readOnly=true)
     public List<User> findUser(User user, PageModel pageModel){
         /** 当前需要分页的总数据条数  */
@@ -63,6 +65,43 @@ public class HrmServiceImpl implements HrmService{
         List<User> users = userDao.selectByPage(params);
         log.debug(users);
         return users;
+    }
+
+    /**
+     * HrmServiceImpl接口removeUserById方法实现
+     * @see { HrmService }
+     * */
+    @Override
+    public void removeUserById(Integer id) {
+        userDao.deleteById(id);
+    }
+
+    /**
+     * HrmServiceImpl接口addUser方法实现
+     * @see { HrmService }
+     * */
+    @Override
+    public void addUser(User user) {
+        userDao.save(user);
+    }
+
+    /**
+     * HrmServiceImpl接口updateUser方法实现
+     * @see { HrmService }
+     * */
+    @Override
+    public void updateUser(User user) {
+        userDao.update(user);
+    }
+
+    /**
+     * HrmServiceImpl接口findUserById方法实现
+     * @see { HrmService }
+     * */
+    @Transactional(readOnly=true)
+    @Override
+    public User findUserById(Integer id) {
+        return userDao.selectById(id);
     }
 
     public void setJobDao(JobDao jobDao) {

@@ -25,26 +25,10 @@
 
         <!-- 顶部左侧添加选项卡监听 -->
         <ul class="layui-nav" lay-filter="side-top-left">
-            <!--<li class="layui-nav-item"><a href="javascript:;" href-url="demo/btn.html"><i class="layui-icon">&#xe621;</i>按钮</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><i class="layui-icon">&#xe621;</i>基础</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="demo/btn.html"><i class="layui-icon">&#xe621;</i>按钮</a></dd>
-                    <dd><a href="javascript:;" href-url="demo/form.html"><i class="layui-icon">&#xe621;</i>表单</a></dd>
-                </dl>
-            </li>-->
         </ul>
 
         <!-- 顶部右侧添加选项卡监听 -->
         <ul class="layui-nav my-header-user-nav" lay-filter="side-top-right">
-            <li class="layui-nav-item">
-                <a class="name" href="javascript:;"><i class="layui-icon">&#xe629;</i>主题</a>
-                <dl class="layui-nav-child">
-                    <dd data-skin="0"><a href="javascript:;">默认</a></dd>
-                    <dd data-skin="1"><a href="javascript:;">纯白</a></dd>
-                    <dd data-skin="2"><a href="javascript:;">蓝白</a></dd>
-                </dl>
-            </li>
             <li class="layui-nav-item">
                 <a class="name" href="javascript:;">&#12288;${sessionScope.user_session.loginname } </a>
                 <dl class="layui-nav-child">
@@ -64,7 +48,7 @@
                <li class="layui-nav-item  layui-nav-itemed">
                     <a href="javascript:;"><i class="layui-icon">&#xe620;</i>用户管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" href-url="user/selectUser"><i class="layui-icon">&#xe621;</i>用户查询</a></dd>
+                        <dd class="layui-this"><a href="javascript:;" href-url="user/selectUser"><i class="layui-icon">&#xe621;</i>用户查询</a></dd>
                         <dd><a href="javascript:;" href-url="user/addUser?flag=1"><i class="layui-icon">&#xe621;</i>添加用户</a></dd>
                     </dl>
                 </li>
@@ -109,17 +93,8 @@
         </div>
     </div>
     <!-- body -->
-    <div class="layui-body my-body">
-        <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
-            <ul class="layui-tab-title">
-                <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe638;</i>用户查询</span></li>
-            </ul>
-            <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">
-                    <iframe id="iframe" src="user/selectUser" frameborder="0"></iframe>
-                </div>
-            </div>
-        </div>
+    <div class="layui-body my-body" style="margin-top: 30px">
+        <iframe src="user/selectUser" frameborder="0"></iframe>
     </div>
     <!-- footer -->
     <div class="layui-footer my-footer">
