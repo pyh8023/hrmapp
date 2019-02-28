@@ -15,7 +15,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Insert title here</title>
+    <title>修改用户</title>
     <link rel="stylesheet" href="/hrmapp/frame/layui/css/layui.css">
     <link rel="stylesheet" href="/hrmapp/frame/static/css/style.css">
     <link rel="icon" href="/hrmapp/frame/static/image/code.png">

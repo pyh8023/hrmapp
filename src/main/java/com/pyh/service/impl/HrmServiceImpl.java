@@ -1,6 +1,7 @@
 package com.pyh.service.impl;
 
 import com.pyh.dao.*;
+import com.pyh.domain.Dept;
 import com.pyh.util.PageModel;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,8 @@ public class HrmServiceImpl implements HrmService{
 		log.info("HrmServiceImpl "+ loginname +" login -- >>");
 		return userDao.selectByLoginNameAndPassword(loginname, password);
 	}
+
+    /*****************用户服务接口实现*************************************/
 
 	@Override
     @Transactional(readOnly=true)
@@ -102,6 +105,51 @@ public class HrmServiceImpl implements HrmService{
     @Override
     public User findUserById(Integer id) {
         return userDao.selectById(id);
+    }
+
+    /*****************部门服务接口实现*************************************/
+
+    @Transactional(readOnly=true)
+    @Override
+    public List<Dept> findAllDept() {
+        return deptDao.selectAllDept();
+    }
+
+    @Transactional(readOnly=true)
+    @Override
+    public List<Dept> findDept(Dept dept, PageModel pageModel) {
+        Map<String,Object> param = new HashMap<>();
+        param.put("dept",dept);
+        log.info("select dept:"+dept);
+
+        int deptCount = deptDao.count(param);
+        log.info("deptCount:"+deptCount);
+        pageModel.setRecordCount(deptCount);
+        param.put("pageModel",pageModel);
+
+        List<Dept> deptList = deptDao.selectByPage(param);
+        return deptList;
+    }
+
+    @Transactional(readOnly=true)
+    @Override
+    public Dept findDeptById(int id) {
+        return deptDao.selectById(id);
+    }
+
+    @Override
+    public void removeDeptById(int id) {
+        deptDao.deleteById(id);
+    }
+
+    @Override
+    public void addDept(Dept dept) {
+        deptDao.save(dept);
+    }
+
+    @Override
+    public void updateDept(Dept dept) {
+        deptDao.update(dept);
     }
 
     public void setJobDao(JobDao jobDao) {
